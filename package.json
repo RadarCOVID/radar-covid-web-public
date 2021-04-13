@@ -1,0 +1,41 @@
+{
+  "name": "sedia-c19exposure-qrcode-front-public",
+  "version": "1.0.0",
+  "description": "Application associated with Radar COVID to generate QR.",
+  "author": "juan <jjimenezb@minsait.com>",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --config=build/webpack.config.js --env.development=true",
+    "build-pre": "webpack --config=build/webpack.config.js --env.preproduction=true",
+    "build-prod": "webpack --config=build/webpack.config.js --env.production=true"
+  },
+  "keywords": [],
+  "license": "MPL",
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@c4dt/libcrowdnotifier": "^1.0.9",
+    "axios": "^0.21.1",
+    "babel-loader": "^8.0.2",
+    "css-loader": "^1.0.0",
+    "eslint": "^7.22.0",
+    "file-loader": "^2.0.0",
+    "html-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "i18next": "^19.9.2",
+    "loader-utils": "^2.0.0",
+    "mini-css-extract-plugin": "^0.4.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "pdf-lib": "^1.16.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-loader": "^3.0.0",
+    "qrcode": "^1.4.4",
+    "qrcode-parser": "^1.2.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.20.0",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.4"
+  }
+}

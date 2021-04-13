@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>1B23CB45-73E4-4DDC-B6A6-CA825E8F0C9D</title>
+    <defs>
+        <polygon id="path-1" points="0 0 1600 0 1600 1249.02683 0 1249.02683"></polygon>
+        <rect id="path-3" x="0" y="0" width="640" height="40" rx="8"></rect>
+    </defs>
+    <g id="🏗-Radar-covid-QR" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3.-Radar-covid-subir-código-QR--privado--" transform="translate(-1245.000000, -644.000000)">
+            <rect fill="#FAF9F7" x="0" y="0" width="1440" height="1684"></rect>
+            <g id="Group-3" opacity="0.300292969" transform="translate(-80.000000, 285.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-2"></g>
+                <path d="M1595.44798,648.028153 C1548.78967,1023.70757 1206.59941,1290.40989 831.15789,1243.72269 C455.705389,1197.03 -43.6182064,825.681313 3.04559959,450.007396 C49.7039131,74.3224866 582.800548,230.173633 981.683816,38.0059489 C1322.56138,-126.220864 1642.10629,272.354236 1595.44798,648.028153" id="Fill-1" fill="#EEEEEE" mask="url(#mask-2)"></path>
+            </g>
+            <g id="Component/input" transform="translate(635.000000, 602.000000)">
+                <g id="container/rounded/border-fill" transform="translate(0.000000, 32.000000)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Rectangle"></g>
+                    <rect id="Rectangle-Copy" stroke="#65498D" fill="#FFFFFF" mask="url(#mask-4)" x="0.5" y="0.5" width="639" height="39" rx="8"></rect>
+                    <g id="icons/calendario" mask="url(#mask-4)" fill="#65498D">
+                        <g transform="translate(610.000000, 10.000000)" id="upload">
+                            <path d="M17.5,18 C17.7761424,18 18,18.2238576 18,18.5 C18,18.7761424 17.7761424,19 17.5,19 L2.5,19 C2.22385763,19 2,18.7761424 2,18.5 C2,18.2238576 2.22385763,18 2.5,18 L17.5,18 Z M10.3497066,1.14633042 L16.3486545,7.141336 C16.5439808,7.33653395 16.5440849,7.65311643 16.3488869,7.84844274 C16.153689,8.04376906 15.8371065,8.04387312 15.6417802,7.84867516 L10.495,2.705 L10.4952173,15.5 C10.4952173,15.7761424 10.2713597,16 9.99521732,16 C9.71907495,16 9.49521732,15.7761424 9.49521732,15.5 L9.495,2.706 L4.34859246,7.84873713 C4.15323192,8.04390083 3.83664947,8.04374126 3.64148577,7.84838072 C3.44632207,7.65302018 3.44648164,7.33643773 3.64184218,7.14127403 L9.64289426,1.14626845 C9.83813978,0.951219657 10.1544952,0.951247393 10.3497066,1.14633042 Z"></path>
+                        </g>
+                    </g>
+                </g>
+                <text id="Input-text" font-family="Muli-Regular, Muli" font-size="16" font-weight="normal" line-spacing="24" fill="#575756">
+                    <tspan x="12" y="56">Examinar en el equipo</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

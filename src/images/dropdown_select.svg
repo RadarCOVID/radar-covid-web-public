@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>BEA435FF-BDFA-45A7-A40C-69E976AC1585</title>
+    <defs>
+        <filter id="filter">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.847000 0 0 0 0 0.847000 0 0 0 0 0.847000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="✅-Radar-covid-QR" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2-M_Radar-covid-generar-QR-publico-y-privado1" transform="translate(-323.000000, -560.000000)">
+            <g filter="url(#filter)" id="Icon/dropdown-Copy">
+                <g transform="translate(323.000000, 560.000000)">
+                    <path d="M12.7601063,10.0003361 L7.16213034,4.86857058 C6.95857605,4.6819687 6.94483342,4.36568463 7.1314353,4.16213034 C7.31803719,3.95857605 7.63432126,3.94483342 7.83787554,4.1314353 L13.8378755,9.6317435 C14.0540355,9.82990126 14.054047,10.1706837 13.8379004,10.368856 L7.83790037,15.8699081 C7.63435865,16.0565237 7.31807366,16.0428024 7.13145806,15.8392606 C6.94484247,15.6357189 6.9585638,15.3194339 7.16210551,15.1328183 L12.7601063,10.0003361 Z" id="carousel-arrow-right" fill="#FFFFFF" transform="translate(10.500001, 10.000683) rotate(90.000000) translate(-10.500001, -10.000683) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

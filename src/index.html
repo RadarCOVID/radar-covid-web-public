@@ -1,0 +1,329 @@
+<!--/*-->
+<!--* Copyright (c) 2021 Gobierno de España-->
+<!--*-->
+<!--* This Source Code Form is subject to the terms of the Mozilla Public-->
+<!--* License, v. 2.0. If a copy of the MPL was not distributed with this-->
+<!--* file, You can obtain one at https://mozilla.org/MPL/2.0/.-->
+<!--*-->
+<!--* SPDX-License-Identifier: MPL-2.0-->
+<!--*/-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Radar COVID</title>
+</head>
+<body>
+<div class="establishment-header">
+    <span data-i18n="WEB_PUBLIC_ESTABLISHMENT_TITLE"></span>
+</div>
+<div class="establishment-dashboard">
+    <div class="page-information">
+        <div id="group-information-1" class="group-information">
+            <div class="img-group-information">
+                <img src="images/image1.svg" alt="image1">
+            </div>
+            <div class="text-group-information">
+                <span data-i18n="WEB_PUBLIC_NUMBER_GROUP_INFORMATION_1" class="number-group-information"></span>
+                <span data-i18n="WEB_PUBLIC_TITLE_GROUP_INFORMATION_1" class="title-group-information"></span>
+                <span data-i18n="WEB_PUBLIC_MSG_GROUP_INFORMATION_1" class="msg-group-information"></span>
+            </div>
+        </div>
+        <div class="group-information">
+            <div class="img-group-information">
+                <img src="./images/image2.svg" alt="image2">
+            </div>
+            <div class="text-group-information">
+                <span data-i18n="WEB_PUBLIC_NUMBER_GROUP_INFORMATION_2" class="number-group-information"></span>
+                <span data-i18n="WEB_PUBLIC_TITLE_GROUP_INFORMATION_2" class="title-group-information"></span>
+                <span data-i18n="WEB_PUBLIC_MSG_GROUP_INFORMATION_2" class="msg-group-information"></span>
+            </div>
+        </div>
+        <div class="establishment-button">
+            <button data-i18n="WEB_PUBLIC_ESTABLISHMENT_BUTTON" id="establishment-button"></button>
+        </div>
+        <div id="group-information-3" class="group-information">
+            <div class="img-group-information">
+                <img src="./images/image3.svg" alt="image3">
+            </div>
+            <div class="text-group-information">
+                <span data-i18n="WEB_PUBLIC_NUMBER_GROUP_INFORMATION_3" class="number-group-information"></span>
+                <span data-i18n="WEB_PUBLIC_TITLE_GROUP_INFORMATION_3" class="title-group-information"></span>
+                <div class="msg-group-information">
+                    <div class="icon-group-information">
+                        <img src="./images/fill_ball.svg" alt="icon">
+                        <span>1</span>
+                    </div>
+                    <span data-i18n="WEB_PUBLIC_MSG_GROUP_INFORMATION_3_1"></span>
+                </div>
+                <div class="msg-group-information">
+                    <div class="icon-group-information">
+                        <img src="./images/fill_ball.svg" alt="icon">
+                        <span>2</span>
+                    </div>
+                    <span data-i18n="WEB_PUBLIC_MSG_GROUP_INFORMATION_3_2"></span>
+                </div>
+                <div class="msg-group-information">
+                    <div class="icon-group-information">
+                        <img src="./images/fill_ball.svg" alt="icon">
+                        <span>3</span>
+                    </div>
+                    <span data-i18n="WEB_PUBLIC_MSG_GROUP_INFORMATION_3_3"></span>
+                </div>
+                <div class="app-group-information">
+                    <span data-i18n="WEB_PUBLIC_APP_GROUP_INFORMATION"></span>
+                    <div class="group-app-button">
+                        <a class="app-button"
+                           href="https://play.google.com/store/apps/details?id=es.gob.radarcovid&amp;hl=es"
+                           target="_blank" rel="noopener">
+                            <img src="./images/icon_google.png" alt="google">
+                        </a>
+                        <a class="app-button" href="https://apps.apple.com/es/app/radar-covid/id1520443509"
+                           target="_blank" rel="noopener">
+                            <img src="./images/icon_apple.png" alt="apple">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="group-information">
+            <div class="img-group-information">
+                <img src="./images/image4.svg" alt="image4">
+            </div>
+            <div class="text-group-information">
+                <span data-i18n="WEB_PUBLIC_NUMBER_GROUP_INFORMATION_4" class="number-group-information"></span>
+                <span data-i18n="WEB_PUBLIC_TITLE_GROUP_INFORMATION_4" class="title-group-information"></span>
+                <span data-i18n="WEB_PUBLIC_MSG_GROUP_INFORMATION_4" class="msg-group-information"></span>
+            </div>
+        </div>
+    </div>
+    <div class="page-qr">
+        <div class="title-page-qr">
+            <span data-i18n="WEB_PUBLIC_TITLE_PAGE_QR"></span>
+            <img id="image-page-qr1-desktop" src="./images/image_page_qr1.svg" alt="imagePageQR1">
+        </div>
+        <div class="groups">
+            <div class="group-left">
+                <div class="group-left-img-page-qr">
+                    <img id="image-page-qr1" src="./images/image_page_qr1.svg" alt="imagePageQR1">
+                </div>
+                <div class="information-box">
+                    <div id="open-information-box" class="title-information-box">
+                        <span data-i18n="WEB_PUBLIC_TITLE_INFORMATION_BOX"></span>
+                        <img id="dropdown" src="./images/dropdown.svg" alt="dropdown">
+                    </div>
+                    <div id="content-information-box">
+                        <div class="msg-information-box">
+                            <div class="icon-group-information">
+                                <img src="./images/fill_ball.svg" alt="icon">
+                                <span>1</span>
+                            </div>
+                            <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_BOX_1" id="msg-information-box-1"></span>
+                            <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_BOX_1_STEP_2" id="msg-information-box-1-step-2"></span>
+                        </div>
+                        <div class="msg-information-box">
+                            <div class="icon-group-information">
+                                <img src="./images/fill_ball.svg" alt="icon">
+                                <span>2</span>
+                            </div>
+                            <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_BOX_2" id="msg-information-box-2"></span>
+                            <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_BOX_2_STEP_2" id="msg-information-box-2-step-2"></span>
+                        </div>
+                        <div id="msg-information-box-3-step-2" class="msg-information-box">
+                            <div class="icon-group-information">
+                                <img src="./images/fill_ball.svg" alt="icon">
+                                <span>3</span>
+                            </div>
+                            <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_BOX_3_STEP_2"></span>
+                        </div>
+                    </div>
+                </div>
+                <img id="image-page-qr2-desktop" src="./images/image_page_qr2.svg" alt="imagePageQR">
+            </div>
+            <div class="group-right">
+                <div id="step" class="step">
+                    <div class="step-button active-step">
+                        <span data-i18n="WEB_PUBLIC_STEP_BUTTON_GENERATE" id="step-button-generate" class="button"></span>
+                    </div>
+                    <div class="step-button">
+                        <span data-i18n="WEB_PUBLIC_STEP_BUTTON_SEND" id="step-button-send" class="button"></span>
+                    </div>
+                </div>
+                <div id="step-select" class="step-select">
+                    <label for="step-select-select"></label>
+                    <select id="step-select-select" name="step-select-select">
+                        <option data-i18n="WEB_PUBLIC_STEP_SELECT_GENERATE" id="step-select-generate" selected></option>
+                        <option data-i18n="WEB_PUBLIC_STEP_SELECT_SEND" id="step-select-send"></option>
+                    </select>
+                </div>
+                <div id="step-button-generate-content" class="step-content">
+                    <div class="div-input">
+                        <label data-i18n="WEB_PUBLIC_LABEL_NAME_ESTABLISHMENT" id="label-name-establishment" for="input-name-establishment"></label>
+                        <input data-i18n="WEB_PUBLIC_INPUT_NAME_ESTABLISHMENT" id="input-name-establishment" type="text" name="input-name-establishment" maxlength="200">
+                        <span data-i18n="WEB_PUBLIC_ERROR_INPUT_NAME_ESTABLISHMENT" id="error-input-name-establishment" class="error"></span>
+                    </div>
+                    <button data-i18n="WEB_PUBLIC_GENERATE_QR_BTN" id="generate-qr-btn"></button>
+                    <div class="qrcode-cards">
+                        <fieldset id="public-qr-card" class="card">
+                            <legend data-i18n="WEB_PUBLIC_LEGEND_PUBLIC_QR_CARD"></legend>
+                            <div class="card-content">
+                                <div class="qr-code">
+                                    <img src="./images/QR_Public.svg" alt="QR_Public">
+                                </div>
+                                <div class="button-card-content">
+                                    <img src="./images/pdf.svg" alt="pdf">
+                                    <a data-i18n="WEB_PUBLIC_DOWNLOAD_PDF_BTN" id="download-pdf-btn" target="_blank"></a>
+                                </div>
+                                <div class="information-remember">
+                                    <div class="title-information-remember">
+                                        <span data-i18n="WEB_PUBLIC_TITLE_INFORMATION_REMEMBER_1"></span>
+                                        <img src="./images/exclamation.svg" alt="exclamation">
+                                    </div>
+                                    <div class="msg-information-remember">
+                                        <img src="./images/user.svg" alt="user">
+                                        <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_REMEMBER_1_1"></span>
+                                    </div>
+                                    <div class="msg-information-remember">
+                                        <img src="./images/location_check.svg" alt="location">
+                                        <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_REMEMBER_1_2"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset id="private-qr-card" class="card">
+                            <legend data-i18n="WEB_PUBLIC_LEGEND_PRIVATE_QR_CARD"></legend>
+                            <div class="card-content">
+                                <div id="private-svg" class="qr-code">
+                                    <img src="./images/QR_Private.svg" alt="QR_Private">
+                                </div>
+                                <div class="button-card-content">
+                                    <img src="./images/download.svg" alt="download">
+                                    <a data-i18n="WEB_PUBLIC_DOWNLOAD_QR_BTN" id="download-qr-btn"></a>
+                                </div>
+                                <div class="information-remember">
+                                    <div class="title-information-remember">
+                                        <span data-i18n="WEB_PUBLIC_TITLE_INFORMATION_REMEMBER_2"></span>
+                                        <img src="./images/exclamation.svg" alt="exclamation">
+                                    </div>
+                                    <div class="msg-information-remember">
+                                        <img src="./images/lock.svg" alt="lock">
+                                        <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_REMEMBER_2_1"></span>
+                                    </div>
+                                    <div class="msg-information-remember">
+                                        <img src="./images/send.svg" alt="send">
+                                        <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_REMEMBER_2_2"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="step-content-image-page-qr2">
+                        <img src="./images/image_page_qr2.svg" alt="imagePageQR2">
+                    </div>
+                </div>
+                <div id="step-button-send-content" class="step-content">
+                    <div class="div-input div-input-file">
+                        <label data-i18n="WEB_PUBLIC_LABEL_FILE_QR" id="label-file-qr" for="input-file-qr"></label>
+                        <input data-i18n="WEB_PUBLIC_INPUT_FILE_QR" id="input-file-qr" type="text" name="input-file-qr" readonly>
+                        <span data-i18n="WEB_PUBLIC_ERROR_INPUT_FILE_QR" id="error-input-file-qr" class="error"></span>
+                    </div>
+                    <div class="div-input" style="display: none">
+                        <label id="label-none-file-qr" for="input-none-file-qr"></label>
+                        <input id="input-none-file-qr" type="file" accept="image/png" name="input-none-file-qr">
+                    </div>
+                    <div class="delete-file-and-upload">
+                        <div id="delete-file" class="delete-file">
+                            <span id="delete-file-name"></span>
+                            <img id="delete-file-button" src="./images/close_mini.svg" alt="close">
+                        </div>
+                    </div>
+                    <div class="div-input">
+                        <label data-i18n="WEB_PUBLIC_LABEL_VERIFICATION_CODE" id="label-verification-code" for="input-verification-code-1"></label>
+                        <div class="div-input-code">
+                            <label for="input-verification-code-1"></label><input id="input-verification-code-1"
+                                                                                  type="text"
+                                                                                  name="input-verification-code"
+                                                                                  maxlength="1">
+                            <label for="input-verification-code-2"></label><input id="input-verification-code-2"
+                                                                                  type="text"
+                                                                                  name="input-verification-code"
+                                                                                  maxlength="1">
+                            <label for="input-verification-code-3"></label><input id="input-verification-code-3"
+                                                                                  type="text"
+                                                                                  name="input-verification-code"
+                                                                                  maxlength="1">
+                            <label for="input-verification-code-4"></label><input id="input-verification-code-4"
+                                                                                  type="text"
+                                                                                  name="input-verification-code"
+                                                                                  maxlength="1">
+                            <label for="input-verification-code-5"></label><input id="input-verification-code-5"
+                                                                                  type="text"
+                                                                                  name="input-verification-code"
+                                                                                  maxlength="1">
+                            <label for="input-verification-code-6"></label><input id="input-verification-code-6"
+                                                                                  type="text"
+                                                                                  name="input-verification-code"
+                                                                                  maxlength="1">
+                            <label for="input-verification-code-7"></label><input id="input-verification-code-7"
+                                                                                  type="text"
+                                                                                  name="input-verification-code"
+                                                                                  maxlength="1">
+                            <label for="input-verification-code-8"></label><input id="input-verification-code-8"
+                                                                                  type="text"
+                                                                                  name="input-verification-code"
+                                                                                  maxlength="1">
+                            <label for="input-verification-code-9"></label><input id="input-verification-code-9"
+                                                                                  type="text"
+                                                                                  name="input-verification-code"
+                                                                                  maxlength="1">
+                            <label for="input-verification-code-10"></label><input id="input-verification-code-10"
+                                                                                   type="text"
+                                                                                   name="input-verification-code"
+                                                                                   maxlength="1">
+                            <label for="input-verification-code-11"></label><input id="input-verification-code-11"
+                                                                                   type="text"
+                                                                                   name="input-verification-code"
+                                                                                   maxlength="1">
+                            <label for="input-verification-code-12"></label><input id="input-verification-code-12"
+                                                                                   type="text"
+                                                                                   name="input-verification-code"
+                                                                                   maxlength="1">
+                        </div>
+                        <span data-i18n="WEB_PUBLIC_ERROR_INPUT_VERIFICATION_CODE" id="error-input-verification-code" class="error"></span>
+                    </div>
+                    <button data-i18n="WEB_PUBLIC_SEND_QR_BTN" id="send-qr-btn"></button>
+                    <div id="step-content-send-image-page-qr2-mobile" class="step-content-image-page-qr2">
+                        <img src="./images/image_page_qr2.svg" alt="imagePageQR2">
+                    </div>
+                    <div class="information-remember">
+                        <div class="title-information-remember">
+                            <span data-i18n="WEB_PUBLIC_TITLE_INFORMATION_REMEMBER_3"></span>
+                            <img src="./images/exclamation.svg" alt="exclamation">
+                        </div>
+                        <div class="msg-information-remember">
+                            <img src="./images/calendar.svg" alt="calendar">
+                            <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_REMEMBER_3_1"></span>
+                        </div>
+                        <div class="msg-information-remember">
+                            <img src="./images/notification.svg" alt="notification">
+                            <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_REMEMBER_3_2"></span>
+                        </div>
+                    </div>
+                    <div id="step-content-send-image-page-qr2-tablet" class="step-content-image-page-qr2">
+                        <img src="./images/image_page_qr2.svg" alt="imagePageQR2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="loading"></div>
+<div id="notification">
+    <span data-i18n="WEB_PUBLIC_NOTIFICATION_GENERATE_QR"></span>
+    <span data-i18n="WEB_PUBLIC_NOTIFICATION_SEND_QR"></span>
+    <img id="notification-close" src="./images/close.svg" alt="close">
+</div>
+</body>
+</html>
