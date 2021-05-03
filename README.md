@@ -22,7 +22,7 @@ Clone this repository.
 
 Install dependencies: `npm install`
 
-Generate a key pair (private and public) with the `setupHA` method the ***clowdnotifier api*** and add them in the files:
+Generate a key pair (private and public) with the `setupHA` method (these come in Uint8Array and you have to pass them to hexadecimal with the` to_hex` method) of the ***clowdnotifier api*** and add them in the files:
 [dev.env.js](./config/dev.env.js)
 [pre.env.js](./config/pre.env.js)
 [prod.env.js](./config/prod.env.js)

@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Radar COVID</title>
 </head>
-<body>
+<body id="body-local">
 <div class="establishment-header">
     <span data-i18n="WEB_PUBLIC_ESTABLISHMENT_TITLE"></span>
 </div>
@@ -162,38 +162,14 @@
                     <div class="div-input">
                         <label data-i18n="WEB_PUBLIC_LABEL_NAME_ESTABLISHMENT" id="label-name-establishment" for="input-name-establishment"></label>
                         <input data-i18n="WEB_PUBLIC_INPUT_NAME_ESTABLISHMENT" id="input-name-establishment" type="text" name="input-name-establishment" maxlength="200">
+                        <textarea data-i18n="WEB_PUBLIC_TEXTAREA_NAME_ESTABLISHMENT" name="input-name-establishment" maxlength="200"></textarea>
                         <span data-i18n="WEB_PUBLIC_ERROR_INPUT_NAME_ESTABLISHMENT" id="error-input-name-establishment" class="error"></span>
                     </div>
                     <button data-i18n="WEB_PUBLIC_GENERATE_QR_BTN" id="generate-qr-btn"></button>
+                    <span class="msg-download" data-i18n="WEB_PUBLIC_MSG_DOWNLOAD"></span>
                     <div class="qrcode-cards">
-                        <fieldset id="public-qr-card" class="card">
-                            <legend data-i18n="WEB_PUBLIC_LEGEND_PUBLIC_QR_CARD"></legend>
-                            <div class="card-content">
-                                <div class="qr-code">
-                                    <img src="./images/QR_Public.svg" alt="QR_Public">
-                                </div>
-                                <div class="button-card-content">
-                                    <img src="./images/pdf.svg" alt="pdf">
-                                    <a data-i18n="WEB_PUBLIC_DOWNLOAD_PDF_BTN" id="download-pdf-btn" target="_blank"></a>
-                                </div>
-                                <div class="information-remember">
-                                    <div class="title-information-remember">
-                                        <span data-i18n="WEB_PUBLIC_TITLE_INFORMATION_REMEMBER_1"></span>
-                                        <img src="./images/exclamation.svg" alt="exclamation">
-                                    </div>
-                                    <div class="msg-information-remember">
-                                        <img src="./images/user.svg" alt="user">
-                                        <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_REMEMBER_1_1"></span>
-                                    </div>
-                                    <div class="msg-information-remember">
-                                        <img src="./images/location_check.svg" alt="location">
-                                        <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_REMEMBER_1_2"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset id="private-qr-card" class="card">
-                            <legend data-i18n="WEB_PUBLIC_LEGEND_PRIVATE_QR_CARD"></legend>
+                        <div id="private-qr-card" class="card card-disable">
+                            <span data-i18n="WEB_PUBLIC_LEGEND_PRIVATE_QR_CARD"></span>
                             <div class="card-content">
                                 <div id="private-svg" class="qr-code">
                                     <img src="./images/QR_Private.svg" alt="QR_Private">
@@ -217,7 +193,33 @@
                                     </div>
                                 </div>
                             </div>
-                        </fieldset>
+                        </div>
+                        <div id="public-qr-card" class="card card-disable">
+                            <span data-i18n="WEB_PUBLIC_LEGEND_PUBLIC_QR_CARD"></span>
+                            <div class="card-content">
+                                <div class="qr-code">
+                                    <img src="./images/QR_Public.svg" alt="QR_Public">
+                                </div>
+                                <div class="button-card-content">
+                                    <img src="./images/pdf.svg" alt="pdf">
+                                    <a data-i18n="WEB_PUBLIC_DOWNLOAD_PDF_BTN" id="download-pdf-btn"></a>
+                                </div>
+                                <div class="information-remember">
+                                    <div class="title-information-remember">
+                                        <span data-i18n="WEB_PUBLIC_TITLE_INFORMATION_REMEMBER_1"></span>
+                                        <img src="./images/exclamation.svg" alt="exclamation">
+                                    </div>
+                                    <div class="msg-information-remember">
+                                        <img src="./images/user.svg" alt="user">
+                                        <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_REMEMBER_1_1"></span>
+                                    </div>
+                                    <div class="msg-information-remember">
+                                        <img src="./images/location_check.svg" alt="location">
+                                        <span data-i18n="WEB_PUBLIC_MSG_INFORMATION_REMEMBER_1_2"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="step-content-image-page-qr2">
                         <img src="./images/image_page_qr2.svg" alt="imagePageQR2">
@@ -321,8 +323,7 @@
 </div>
 <div id="loading"></div>
 <div id="notification">
-    <span data-i18n="WEB_PUBLIC_NOTIFICATION_GENERATE_QR"></span>
-    <span data-i18n="WEB_PUBLIC_NOTIFICATION_SEND_QR"></span>
+    <span id="notification-msg"></span>
     <img id="notification-close" src="./images/close.svg" alt="close">
 </div>
 </body>

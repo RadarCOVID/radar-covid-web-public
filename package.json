@@ -2,7 +2,7 @@
   "name": "sedia-c19exposure-qrcode-front-public",
   "version": "1.0.0",
   "description": "Application associated with Radar COVID to generate QR.",
-  "author": "juan <jjimenezb@minsait.com>",
+  "author": "minsait",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --config=build/webpack.config.js --env.development=true",
@@ -21,6 +21,7 @@
     "css-loader": "^1.0.0",
     "eslint": "^7.22.0",
     "file-loader": "^2.0.0",
+    "file-saver": "^2.0.5",
     "html-loader": "^1.0.0",
     "html-webpack-plugin": "^3.2.0",
     "i18next": "^19.9.2",

@@ -29,7 +29,7 @@ getLocaleTexts().then(resp => {
 	if (location && location.pathname !== '' && location.pathname.split('/')[1] !== '') {
 		locationParam = location.pathname.split('/')[1];
 	}
-	const locale = (arrayLocaleBack.find(l => l.id.toLowerCase() === locationParam.toLowerCase())) ? arrayLocaleBack.find(l => l.id.toLowerCase() === locationParam.toLowerCase()) : arrayLocaleBack.find(l => l.id.toLowerCase() === localeParam.toLowerCase());
+	const locale = (arrayLocaleBack.find(l => l.id.toLowerCase().split('-')[0] === locationParam.toLowerCase())) ? arrayLocaleBack.find(l => l.id.toLowerCase().split('-')[0] === locationParam.toLowerCase()) : arrayLocaleBack.find(l => l.id.toLowerCase() === localeParam.toLowerCase());
 	if (!locale) {
 		configDefaultI18next();
 		return;
@@ -63,7 +63,7 @@ function initI18next(resources) {
 		for (let key in esLocale) {
 			const arrayInnerHTML = ['WEB_PUBLIC_MSG_GROUP_INFORMATION_1', 'WEB_PUBLIC_MSG_GROUP_INFORMATION_2', 'WEB_PUBLIC_MSG_GROUP_INFORMATION_4',
 				'WEB_PUBLIC_MSG_INFORMATION_BOX_2', 'WEB_PUBLIC_MSG_INFORMATION_REMEMBER_1_1', 'WEB_PUBLIC_MSG_INFORMATION_REMEMBER_2_1'];
-			const arrayPlaceholder = ['WEB_PUBLIC_INPUT_NAME_ESTABLISHMENT', 'WEB_PUBLIC_INPUT_FILE_QR'];
+			const arrayPlaceholder = ['WEB_PUBLIC_INPUT_NAME_ESTABLISHMENT', 'WEB_PUBLIC_TEXTAREA_NAME_ESTABLISHMENT', 'WEB_PUBLIC_INPUT_FILE_QR'];
 			let inner = 'innerText';
 			if (arrayInnerHTML.find(e => e === key)) {
 				inner = 'innerHTML';

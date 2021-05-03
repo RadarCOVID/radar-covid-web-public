@@ -17,7 +17,7 @@ const generatePDF = async (publicMessage, privateMessage, data) => {
 	const existingPdfBytes = await fetch(pdfTemplate).then(res => res.arrayBuffer());
 	const pdfDoc = await PDFDocument.load(existingPdfBytes);
 
-	pdfDoc.setTitle(data.title);
+	pdfDoc.setTitle(data.title, { showInWindowTitleBar: true });
 	const pages = pdfDoc.getPages();
 	const firstPage = pages[0];
 	const {width, height} = firstPage.getSize();

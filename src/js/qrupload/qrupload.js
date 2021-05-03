@@ -94,7 +94,7 @@ export const sendData = (codeVerification, fileData) => {
 				if (dataSend) {
 					postTraceKeys(dataSend, resp.data.token).then(() => {
 						resetApp();
-						showNotification('WEB_PUBLIC_NOTIFICATION_SEND_QR');
+						showNotification('WEB_PUBLIC_NOTIFICATION_SEND_QR', 3000);
 					}).catch(() => {
 						setStyle('id', 'error-input-verification-code', 'display', 'block');
 						console.error('Error trace key');

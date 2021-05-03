@@ -10,17 +10,23 @@
 
 import '../css/index.css';
 import './i18n/addTexts';
-import {generateKeys} from './qrgenerator/qrgenerator';
+import {downloadFile, generateKeys, generateQRPublic, setQrProtoBufAndDate} from './qrgenerator/qrgenerator';
 import qrcodeParser from 'qrcode-parser';
 import {sendData} from './qrupload/qrupload';
 import qrPublicDummy from '../images/QR_Public.svg';
 import qrPrivateDummy from '../images/QR_Private.svg';
+import i18next from 'i18next';
 
-let fileData;
 const inputNoneFileQR = document.getElementById('input-none-file-qr');
 const stepButtons = document.getElementsByClassName('step-button');
 const divInputCode = document.getElementsByClassName('div-input-code');
 const deleteFileName = document.getElementById('delete-file-name');
+const downloadPdfBtn = document.getElementById('download-pdf-btn');
+const downloadQrBtn = document.getElementById('download-qr-btn');
+const privateQrCard = document.getElementById('private-qr-card');
+
+let fileData;
+let timeOutNotification;
 
 function initApp() {
 	window.scrollTo(0, 0);
@@ -42,24 +48,35 @@ export function resetApp() {
 			input.value = '';
 		}
 	}
+	const textarea = document.querySelector('textarea');
+	if (textarea) {
+		textarea.value = '';
+	}
 
 	const publicQRCard = document.querySelector('#public-qr-card .qr-code');
 	if (publicQRCard) publicQRCard.innerHTML = `<img src="${qrPublicDummy}" alt="QR_Public">`;
 	const privateQRCard = document.querySelector('#private-qr-card .qr-code');
 	if (privateQRCard) privateQRCard.innerHTML = `<img src="${qrPrivateDummy}" alt="QR_Private">`;
-	const pdfButton = document.getElementById('download-pdf-btn');
-	if (pdfButton) pdfButton.removeAttribute('href');
-	const svgButton = document.getElementById('download-qr-btn');
-	if (svgButton) {
-		svgButton.removeAttribute('download');
-		svgButton.removeAttribute('href');
-	}
+	if (downloadPdfBtn) removeAttributeAndEvent(downloadPdfBtn);
+	if (downloadQrBtn) removeAttributeAndEvent(downloadQrBtn);
 
 	setStyle('id', 'error-input-name-establishment', 'display', 'none');
 	setStyle('id', 'error-input-verification-code', 'display', 'none');
 	setStyle('id', 'error-input-file-qr', 'display', 'none');
+	setStyle('class', 'msg-download', 'display', 'none', 0);
+	setStyle('class', 'qrcode-cards', 'display', 'none', 0);
 
+	setQrProtoBufAndDate(undefined);
+	setActiveQRPrivate(true);
 	deleteFiles();
+}
+
+function removeAttributeAndEvent(element) {
+	if (element) {
+		element.removeAttribute('href');
+		element.removeAttribute('download');
+		element.removeEventListener('click', downloadFile);
+	}
 }
 
 function addEventClickToButtons() {
@@ -73,12 +90,27 @@ function addEventClickToButtons() {
 	if (generateQRBtn) generateQRBtn.addEventListener('click', setGenerateCodeQR);
 	const senQRBtn = document.getElementById('send-qr-btn');
 	if (senQRBtn) senQRBtn.addEventListener('click', sendQRPrivate);
-	const inputNameEstablishment = document.getElementById('input-name-establishment');
-	if (inputNameEstablishment) inputNameEstablishment.addEventListener('keypress', function (e) {
-		if (e.key === 'Enter') {
-			setGenerateCodeQR();
+	if (downloadQrBtn) downloadQrBtn.addEventListener('click', function (e) {
+		if (e.target.href || e.target.saveFileParam) {
+			showNotification('WEB_PUBLIC_NOTIFICATION_QENERATE_QR_PRIVATE', 3000);
+			setActiveQRPrivate(false);
 		}
 	});
+	if (downloadPdfBtn) downloadPdfBtn.addEventListener('click', function (e) {
+		if (e.target.href || e.target.saveFileParam) {
+			showNotification('WEB_PUBLIC_NOTIFICATION_QENERATE_QR_PUBLIC', 3000);
+		}
+	});
+	const inputNameEstablishment = document.getElementsByName('input-name-establishment');
+	if (inputNameEstablishment && inputNameEstablishment.length > 0) {
+		for (let input of inputNameEstablishment) {
+			input.addEventListener('keypress', function (e) {
+				if (e.key === 'Enter') {
+					setGenerateCodeQR();
+				}
+			});
+		}
+	}
 	const inputFileQR = document.getElementById('input-file-qr');
 	if (inputFileQR) inputFileQR.addEventListener('click', function () {
 		if (inputNoneFileQR) inputNoneFileQR.click();
@@ -98,7 +130,7 @@ function addEventClickToButtons() {
 	if (divInputCode[0] && divInputCode[0].childElementCount > 0) {
 		for (let input of divInputCode[0].children) {
 			if (input.nodeName === 'INPUT') {
-				input.addEventListener('keydown', function (e) {
+				input.addEventListener('keyup', function (e) {
 					validateADigitAlphanumericInputCode(e, input);
 				});
 			}
@@ -184,15 +216,15 @@ function changeTextStep(id) {
 	setStyle('id', 'msg-information-box-2', 'display', (id === 'step-button-generate' || id === 'step-select-generate') ? 'block' : 'none');
 	setStyle('id', 'msg-information-box-2-step-2', 'display', (id === 'step-button-generate' || id === 'step-select-generate') ? 'none' : 'block');
 	setStyle('id', 'msg-information-box-3-step-2', 'display', (id === 'step-button-generate' || id === 'step-select-generate') ? 'none' : 'flex');
-	setStyle('id', 'image-page-qr2-desktop', 'marginTop', (id === 'step-button-generate' || id === 'step-select-generate') ? '0px' : '171px');
 }
 
 function validateNameEstablishment() {
-	const inputName = document.getElementById('input-name-establishment');
+	const inputName = (window.innerWidth >=768) ? document.getElementsByName('input-name-establishment')[0] : document.getElementsByName('input-name-establishment')[1];
 	const regExpStartWithSpace = /(^\s)/;
 	const regExpSpecialCharacterFollowedBySymbol = /(\W[äÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ])|([äÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙñÑ]\W)/;
 	const regExpDoubleFollowedSymbol = /(\W\W)/;
-	if (!inputName || !inputName.value || inputName.value.toString().trim() === '' || regExpStartWithSpace.test(inputName.value)) return true;
+	const regExpSymbolFollowedSpaceFollowedSymbol = /(\W\s\W)/;
+	if (!inputName || !inputName.value || inputName.value.toString().trim() === '' || regExpStartWithSpace.test(inputName.value) || regExpSymbolFollowedSpaceFollowedSymbol.test(inputName.value)) return true;
 	for (let intI = 0; intI < inputName.value.toString().length; intI++) {
 		let validateText = inputName.value.toString().substr(intI, 2).trim();
 		if (validateText.length > 1 && regExpDoubleFollowedSymbol.test(validateText) && !regExpSpecialCharacterFollowedBySymbol.test(validateText)) return true;
@@ -203,11 +235,10 @@ function validateNameEstablishment() {
 function validateADigitAlphanumericInputCode(e, input) {
 	const regExp = /^[A-Za-z0-9]$/;
 	const arrayValidKeyNoAlphanumeric = ['Tab', 'ArrowRight', 'ArrowLeft', 'Delete', 'Backspace'];
-	if (!regExp.test(e.key) && !arrayValidKeyNoAlphanumeric.find(valid => valid === e.key)) {
-		e.preventDefault();
-		return;
+	if (!regExp.test(input.value) && !arrayValidKeyNoAlphanumeric.find(valid => valid === e.key)) {
+		input.value = (input.value.length > 1) ? input.value.substring(0, 1) : '';
 	}
-	if (regExp.test(e.key)) {
+	if (regExp.test(input.value)) {
 		if (input.nextElementSibling && input.nextElementSibling.nextElementSibling) {
 			setTimeout(() => {
 				input.nextElementSibling.nextElementSibling.select();
@@ -247,7 +278,10 @@ function setGenerateCodeQR() {
 	setStyle('id', 'loading', 'display', 'block');
 	generateKeys().finally(() => {
 		setStyle('id', 'loading', 'display', 'none');
-		showNotification('WEB_PUBLIC_NOTIFICATION_GENERATE_QR');
+		setStyle('class', 'msg-download', 'display', 'block', 0);
+		setStyle('class', 'qrcode-cards', 'display', 'flex', 0);
+		showNotification('WEB_PUBLIC_NOTIFICATION_GENERATE_QR', 3000);
+		setActiveQRPrivate(true);
 	});
 }
 
@@ -282,8 +316,6 @@ export function setStyle(key, name, option, value, index) {
 		element = document.getElementById(name);
 	} else if (key === 'class' && typeof index === 'number') {
 		element = document.getElementsByClassName(name)[index];
-	} else if (key === 'data-i18n') {
-		element = document.querySelector(`[data-i18n="${name}"]`);
 	}
 	if (element) {
 		element.style[option] = value;
@@ -312,13 +344,42 @@ function sendQRPrivate() {
 	sendData(validateCodeVerification(), fileData);
 }
 
-export function showNotification(name) {
-	setStyle('data-i18n', name, 'display', 'block');
-	setStyle('id', 'notification', 'display', 'grid');
-	setTimeout(() => {
-		setStyle('data-i18n', name, 'display', 'none');
-		setStyle('id', 'notification', 'display', 'none');
-	}, 3000);
+export function setActiveQRPrivate(reset) {
+	const publicQrCard = document.getElementById('public-qr-card');
+	if (downloadQrBtn) {
+		if (reset) downloadQrBtn.innerText = i18next.t('WEB_PUBLIC_DOWNLOAD_QR_BTN');
+		else downloadQrBtn.innerText = i18next.t('WEB_PUBLIC_RE_DOWNLOAD_QR_BTN');
+	}
+	if (privateQrCard && publicQrCard) {
+		privateQrCard.classList.remove('card-active');
+		privateQrCard.classList.remove('card-disable');
+		publicQrCard.classList.remove('card-active');
+		publicQrCard.classList.remove('card-disable');
+		if (reset) {
+			privateQrCard.classList.add('card-active');
+			publicQrCard.classList.add('card-disable');
+		} else {
+			publicQrCard.classList.add('card-active');
+			if (downloadPdfBtn.href || downloadPdfBtn.saveFileParam) return;
+			setStyle('id', 'loading', 'display', 'block');
+			generateQRPublic().then(() => {
+				setStyle('id', 'loading', 'display', 'none');
+			});
+		}
+	}
+}
+
+export function showNotification(name, time) {
+	const notificationMsg = document.getElementById('notification-msg');
+	if (timeOutNotification) clearTimeout(timeOutNotification);
+	if (notificationMsg) {
+		notificationMsg.innerText = i18next.t(name);
+		setStyle('id', 'notification', 'display', 'grid');
+		timeOutNotification = setTimeout(() => {
+			notificationMsg.innerText = '';
+			setStyle('id', 'notification', 'display', 'none');
+		}, time);
+	}
 }
 
 window.addEventListener('resize', function () {
