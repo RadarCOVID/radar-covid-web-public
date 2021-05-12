@@ -276,6 +276,7 @@ function setGenerateCodeQR() {
 	}
 	setStyle('id', 'error-input-name-establishment', 'display', 'none');
 	setStyle('id', 'loading', 'display', 'block');
+	setQrProtoBufAndDate(undefined);
 	generateKeys().finally(() => {
 		setStyle('id', 'loading', 'display', 'none');
 		setStyle('class', 'msg-download', 'display', 'block', 0);
@@ -358,6 +359,9 @@ export function setActiveQRPrivate(reset) {
 		if (reset) {
 			privateQrCard.classList.add('card-active');
 			publicQrCard.classList.add('card-disable');
+			const publicQRCard = document.querySelector('#public-qr-card .qr-code');
+			if (publicQRCard) publicQRCard.innerHTML = `<img src="${qrPublicDummy}" alt="QR_Public">`;
+			if (downloadPdfBtn) removeAttributeAndEvent(downloadPdfBtn);
 		} else {
 			publicQrCard.classList.add('card-active');
 			if (downloadPdfBtn.href || downloadPdfBtn.saveFileParam) return;
