@@ -371,6 +371,10 @@
     margin-bottom: 8px;
 }
 
+.establishment-dashboard .page-qr .groups .group-right .step-content .div-input-file-none {
+    display: none !important;
+}
+
 .establishment-dashboard .page-qr .groups .group-right .step-content .div-input label {
     font-weight: 600;
     line-height: 24px;

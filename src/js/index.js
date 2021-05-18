@@ -10,7 +10,7 @@
 
 import '../css/index.css';
 import './i18n/addTexts';
-import {downloadFile, generateKeys, generateQRPublic, setQrProtoBufAndDate} from './qrgenerator/qrgenerator';
+import {downloadFile, generateKeys} from './qrgenerator/qrgenerator';
 import qrcodeParser from 'qrcode-parser';
 import {sendData} from './qrupload/qrupload';
 import qrPublicDummy from '../images/QR_Public.svg';
@@ -24,6 +24,7 @@ const deleteFileName = document.getElementById('delete-file-name');
 const downloadPdfBtn = document.getElementById('download-pdf-btn');
 const downloadQrBtn = document.getElementById('download-qr-btn');
 const privateQrCard = document.getElementById('private-qr-card');
+const publicQrCard = document.getElementById('public-qr-card');
 
 let fileData;
 let timeOutNotification;
@@ -66,7 +67,6 @@ export function resetApp() {
 	setStyle('class', 'msg-download', 'display', 'none', 0);
 	setStyle('class', 'qrcode-cards', 'display', 'none', 0);
 
-	setQrProtoBufAndDate(undefined);
 	setActiveQRPrivate(true);
 	deleteFiles();
 }
@@ -76,6 +76,7 @@ function removeAttributeAndEvent(element) {
 		element.removeAttribute('href');
 		element.removeAttribute('download');
 		element.removeEventListener('click', downloadFile);
+		element.saveFileParam = undefined;
 	}
 }
 
@@ -97,6 +98,10 @@ function addEventClickToButtons() {
 		}
 	});
 	if (downloadPdfBtn) downloadPdfBtn.addEventListener('click', function (e) {
+		if (publicQrCard && publicQrCard.className.includes('card-disable')) {
+			e.preventDefault();
+			return;
+		}
 		if (e.target.href || e.target.saveFileParam) {
 			showNotification('WEB_PUBLIC_NOTIFICATION_QENERATE_QR_PUBLIC', 3000);
 		}
@@ -276,7 +281,6 @@ function setGenerateCodeQR() {
 	}
 	setStyle('id', 'error-input-name-establishment', 'display', 'none');
 	setStyle('id', 'loading', 'display', 'block');
-	setQrProtoBufAndDate(undefined);
 	generateKeys().finally(() => {
 		setStyle('id', 'loading', 'display', 'none');
 		setStyle('class', 'msg-download', 'display', 'block', 0);
@@ -346,7 +350,6 @@ function sendQRPrivate() {
 }
 
 export function setActiveQRPrivate(reset) {
-	const publicQrCard = document.getElementById('public-qr-card');
 	if (downloadQrBtn) {
 		if (reset) downloadQrBtn.innerText = i18next.t('WEB_PUBLIC_DOWNLOAD_QR_BTN');
 		else downloadQrBtn.innerText = i18next.t('WEB_PUBLIC_RE_DOWNLOAD_QR_BTN');
@@ -359,16 +362,8 @@ export function setActiveQRPrivate(reset) {
 		if (reset) {
 			privateQrCard.classList.add('card-active');
 			publicQrCard.classList.add('card-disable');
-			const publicQRCard = document.querySelector('#public-qr-card .qr-code');
-			if (publicQRCard) publicQRCard.innerHTML = `<img src="${qrPublicDummy}" alt="QR_Public">`;
-			if (downloadPdfBtn) removeAttributeAndEvent(downloadPdfBtn);
 		} else {
 			publicQrCard.classList.add('card-active');
-			if (downloadPdfBtn.href || downloadPdfBtn.saveFileParam) return;
-			setStyle('id', 'loading', 'display', 'block');
-			generateQRPublic().then(() => {
-				setStyle('id', 'loading', 'display', 'none');
-			});
 		}
 	}
 }
